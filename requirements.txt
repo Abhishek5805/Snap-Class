@@ -1,0 +1,21 @@
+# utilities
+numpy
+pandas
+
+
+# face_recognition
+scikit-learn 
+# imageoperation 
+dlib-bin
+# face shape predictor
+
+git+https://github.com/ageitgey/face_recognition.git
+setuptools<70.0.0
+
+supabase
+bcrypt # for password hashing
+
+segno # for QR code generation
+pillow # for image processing
+
+streamlit # for web app development
