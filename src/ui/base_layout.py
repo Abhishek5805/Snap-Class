@@ -65,7 +65,7 @@ def style_base_layout():
         }
         BUTTON[kind="primary"] {
             border-radius: 1.5rem !important;
-            background:#5865F2 !important;
+            background-color: #5865F2 !important;
             color: white !important;
             border: none !important;
             padding: 10px 20px !important;
@@ -73,7 +73,7 @@ def style_base_layout():
         }
         BUTTON[kind="secondary"] {
             border-radius: 1.5rem !important;
-            background:#EB459E !important;
+            background-color: #EB459E !important;
             color: white !important;
             border: none !important;
             padding: 10px 20px !important;
@@ -81,7 +81,7 @@ def style_base_layout():
         }
         BUTTON[kind="tertiary"] {
             border-radius: 1.5rem !important;
-            background:black !important;
+            background-color: black !important;
             color: white !important;
             border: none !important;
             padding: 10px 20px !important;
