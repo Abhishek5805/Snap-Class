@@ -1,3 +1,5 @@
+streamlit # for web app development
+
 # utilities
 numpy
 pandas
@@ -18,4 +20,3 @@ bcrypt # for password hashing
 segno # for QR code generation
 pillow # for image processing
 
-streamlit # for web app development

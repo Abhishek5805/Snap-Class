@@ -4,12 +4,13 @@ from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
 from PIL import Image
 import numpy as np
-from src.pipelines.face_pipeline import predict_attendence,get_face_embedding,train_classifier
-from src.pipelines.voice_pippeline import get_voice_embedding
-from src.database.db import get_all_students,create_student,get_student_subjects,get_student_attendence
+from src.pipelines.face_pipeline import predict_attendance,get_face_embedding,train_classifier
+from src.pipelines.voice_pipeline import get_voice_embedding
+from src.database.db import get_all_students,create_student,get_student_subjects,get_student_attendence,unenroll_student_to_subject
 import time
 
 from src.components.dialog_enroll import enroll_dialog
+from src.components.subject_card import subject_card
 
 
 def student_dashboard():
@@ -56,6 +57,13 @@ def student_dashboard():
         sub=sub_node['subjects']
         sid=sub['subject_id']
         stat=stats_map.get(sid,{'total':0,'attended':0})
+        def unenroll_button():
+            if st.button("unenroll from this course",type='tertiary',width='stretch'):
+                unenroll_student_to_subject(student_id,sid)
+                st.toast(f"Unenrolled from {sub['name']} successfully!")
+                st.rerun()
+
+
         with cols[i%2]:
             subject_card(
                 name=sub['name'],
@@ -64,7 +72,8 @@ def student_dashboard():
                 stats=[
                     ('📅','Total',stat['total']),
                     ('✅','Attended',stat['attended'])
-                ]
+                ],
+                footer_callback=unenroll_button
             )
             
     footer_dashboard()
@@ -97,7 +106,7 @@ def student_screen():
         img=np.array(Image.open(photo_source))
 
         with st.spinner("Processing..."):
-            detected,all_ids,num_faces=predict_attendence(img)
+            detected,all_ids,num_faces=predict_attendance(img)
 
         if num_faces==0:
             st.warning("No face detected. Please try again.")
